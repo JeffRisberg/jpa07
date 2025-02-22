@@ -28,6 +28,7 @@ dependencies {
 
     implementation("org.apache.commons:commons-collections4:4.2")
     implementation("org.projectlombok:lombok:$projectLombokVersion")
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
     implementation("com.fasterxml:classmate:1.4.0")
 
     implementation("org.hibernate:hibernate-core:$hibernateVersion") {

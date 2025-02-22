@@ -12,7 +12,7 @@ public class CharityService extends AbstractService<Charity> {
     private static CharityDAO dao = new CharityDAO();
 
     public CharityService() {
-        this.emf = Persistence.createEntityManagerFactory("JPA01");
+        this.emf = Persistence.createEntityManagerFactory("JPA07");
     }
 
     public Charity create(Charity Charity) {

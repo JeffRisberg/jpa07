@@ -1,45 +1,57 @@
 package com.company.domain;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "charities")
 @NoArgsConstructor
 @Data
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 public class Charity extends AbstractItem {
 
-    @Column(name = "name", nullable = false)
-    private String name;
+  @Column(name = "name", nullable = false)
+  private String name;
 
-    @Column(name = "ein", nullable = false)
-    private String ein;
+  @Column(name = "ein", nullable = false)
+  private String ein;
 
-    @Column(name = "description")
-    private String description;
+  @Column(name = "description")
+  private String description;
 
-    @OneToMany(mappedBy = "charity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Donation> donations = new ArrayList<Donation>();
+  @JdbcTypeCode(SqlTypes.JSON)
+  @Column(name = "attributes", columnDefinition = "json")
+  private Map<String, Object> attributes;
 
-    public Charity(String name, String ein) {
-        this.setId(null);
-        this.name = name;
-        this.ein = ein;
-    }
+  @OneToMany(mappedBy = "charity", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Donation> donations = new ArrayList<Donation>();
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
+  public Charity(String name, String ein, Map<String, Object> attributes) {
+    this.setId(null);
+    this.name = name;
+    this.ein = ein;
+    this.attributes = attributes;
+  }
 
-        sb.append("Charity[name=" + name);
-        sb.append(", ein=" + ein);
-        sb.append("]");
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
 
-        return sb.toString();
-    }
+    sb.append("Charity[name=" + name);
+    sb.append(", ein=" + ein);
+    sb.append(", attributes=" + attributes);
+    sb.append("]");
+
+    return sb.toString();
+  }
 }
