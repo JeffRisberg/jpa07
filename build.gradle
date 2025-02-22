@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "6.5.0-rc1"
+}
+
+group = 'com.company'
+sourceCompatibility = 1.17
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    slf4jVersion = '1.7.32'
+    projectLombokVersion = '1.16.20'
+    hibernateVersion = '6.5.2.Final'
+}
+
+dependencies {
+    implementation "org.slf4j:slf4j-api:$slf4jVersion"
+    implementation "org.slf4j:slf4j-simple:$slf4jVersion"
+
+    implementation("org.apache.commons:commons-collections4:4.2")
+    implementation("org.projectlombok:lombok:$projectLombokVersion")
+    implementation("com.fasterxml:classmate:1.4.0")
+
+    implementation("org.hibernate:hibernate-core:$hibernateVersion") {
+        exclude module: 'dom4j'
+    }
+    implementation(group: 'org.dom4j', name: 'dom4j', version: '2.1.3') {
+        force = true
+    }
+
+    implementation group: 'org.hibernate.common', name: 'hibernate-commons-annotations', version: '6.0.6.Final'
+
+    implementation("mysql:mysql-connector-java:5.1.47")
+
+    testImplementation("junit:junit:4.13.2")
+}

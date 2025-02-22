@@ -1,0 +1,9 @@
+.gradle
+/build/
+
+.idea/workspace.xml
+
+*.iws
+*.ipr
+/out/
+target/
