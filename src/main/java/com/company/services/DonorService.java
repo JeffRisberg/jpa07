@@ -1,11 +1,10 @@
 package com.company.services;
 
 import com.company.common.FilterDescription;
-import com.company.domain.Charity;
 import com.company.domain.Donor;
 import com.company.services.DAO.DonorDAO;
-
 import jakarta.persistence.Persistence;
+
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 

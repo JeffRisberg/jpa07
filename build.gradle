@@ -38,6 +38,7 @@ dependencies {
 
     implementation("org.hibernate:hibernate-core:$hibernateVersion")
     implementation("org.hibernate.common:hibernate-commons-annotations:$hibernateCommonsAnnotationsVersion")
+    implementation("org.hibernate:hibernate-hikaricp:$hibernateVersion")
 
     implementation("mysql:mysql-connector-java:5.1.47")
 
