@@ -1,9 +1,9 @@
 package com.company.services;
 
 import com.company.common.FilterDescription;
+import com.company.db.EntityManagerFactoryProvider;
 import com.company.domain.Charity;
 import com.company.services.DAO.CharityDAO;
-import jakarta.persistence.Persistence;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -12,7 +12,7 @@ public class CharityService extends AbstractService<Charity> {
     private static CharityDAO dao = new CharityDAO();
 
     public CharityService() {
-        this.emf = Persistence.createEntityManagerFactory("JPA07");
+        this.emf = EntityManagerFactoryProvider.getEMF();
     }
 
     public Charity create(Charity Charity) {

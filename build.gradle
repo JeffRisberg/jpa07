@@ -40,6 +40,7 @@ dependencies {
     implementation("org.hibernate.common:hibernate-commons-annotations:$hibernateCommonsAnnotationsVersion")
     implementation("org.hibernate:hibernate-hikaricp:$hibernateVersion")
 
+    implementation 'com.zaxxer:HikariCP:6.2.1'
     implementation("mysql:mysql-connector-java:5.1.47")
 
     testImplementation("junit:junit:4.13.2")
