@@ -11,19 +11,5 @@
         <class>com.company.domain.Charity</class>
         <class>com.company.domain.Donation</class>
 
-        <properties>
-            <!-- The JDBC URL to the database instance -->
-            <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/jpa07?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
-
-            <!-- The database username -->
-            <property name="jakarta.persistence.jdbc.user" value="developer" />
-
-            <!-- The database password -->
-            <property name="jakarta.persistence.jdbc.password" value="123456" />
-
-            <property name="hibernate.hbm2ddl.auto" value="update" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
-        </properties>
     </persistence-unit>
 </persistence>
