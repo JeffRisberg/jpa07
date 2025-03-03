@@ -23,7 +23,7 @@ ext {
     slf4jVersion = '1.7.32'
     projectLombokVersion = '1.16.20'
     jacksonDataBindVersion = '2.18.2'
-    hibernateVersion = '6.5.2.Final'
+    hibernateVersion = '6.6.8.Final'
     hibernateCommonsAnnotationsVersion = '6.0.6.Final'
 }
 
@@ -39,7 +39,8 @@ dependencies {
     implementation("org.hibernate:hibernate-core:$hibernateVersion")
     implementation("org.hibernate.common:hibernate-commons-annotations:$hibernateCommonsAnnotationsVersion")
 
-    implementation("mysql:mysql-connector-java:5.1.47")
+    //implementation("mysql:mysql-connector-java:5.1.47")
+    implementation 'com.mysql:mysql-connector-j:8.4.0'
 
     testImplementation("junit:junit:4.13.2")
 }
