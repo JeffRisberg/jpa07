@@ -3,10 +3,10 @@ package com.company.db;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AvailableSettings;
+import org.hibernate.cfg.Configuration;
 
 public class EntityManagerFactoryProvider {
 
@@ -30,17 +30,39 @@ public class EntityManagerFactoryProvider {
       config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
       ds = new HikariDataSource(config);
 
-      Map<String, Object> properties = new HashMap();
-      properties.put("jakarta.persistence.dataSource", ds);
-      properties.put("jakarta.persistence.jdbc.user", user);
-      properties.put("jakarta.persistence.jdbc.password", password);
-      properties.put("jakarta.persistence.jdbc.url", jdbcUrl);
+      // Configure Hibernate settings
+      Properties settings = new Properties();
+      //settings.put(AvailableSettings.DRIVER, "org.mariadb.jdbc.Driver");
+      settings.put(AvailableSettings.URL, jdbcUrl);
+      settings.put(AvailableSettings.USER, user);
+      settings.put(AvailableSettings.PASS, password);
+      settings.put(AvailableSettings.DIALECT, "org.hibernate.dialect.MariaDBDialect");
+      settings.put(AvailableSettings.HBM2DDL_AUTO, "update");  // Auto-create tables
+      settings.put(AvailableSettings.SHOW_SQL, "true");
 
-      properties.put("hibernate.hbm2ddl.auto", "update");
-      properties.put("hibernate.dialect", "org.hibernate.dialect.MariaDBDialect");
+      // Hibernate Configuration
+      Configuration configuration = new Configuration();
+      configuration.setProperties(settings);
 
-      emf = Persistence.createEntityManagerFactory("JPA07", properties);
+      // Register entity classes manually
+      configuration.addAnnotatedClass(com.company.domain.Donor.class);
+      configuration.addAnnotatedClass(com.company.domain.Charity.class);
+      configuration.addAnnotatedClass(com.company.domain.Donation.class);
+
+      // Set database properties
+      //configuration.setProperty("hibernate.connection.driver_class", "org.h2.Driver");
+      //configuration.setProperty("hibernate.connection.url", "jdbc:h2:mem:testdb");
+      //configuration.setProperty("hibernate.connection.username", "sa");
+      //configuration.setProperty("hibernate.connection.password", "");
+      //configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+      //configuration.setProperty("hibernate.hbm2ddl.auto", "update");
+      //configuration.setProperty("hibernate.show_sql", "true");
+
+      // Build SessionFactory
+      SessionFactory sessionFactory = configuration.buildSessionFactory();
+      emf = sessionFactory.unwrap(EntityManagerFactory.class);
     }
+
     return emf;
   }
 }
