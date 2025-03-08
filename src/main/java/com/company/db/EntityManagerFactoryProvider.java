@@ -32,7 +32,7 @@ public class EntityManagerFactoryProvider {
 
       // Configure Hibernate settings
       Properties settings = new Properties();
-      //settings.put(AvailableSettings.DRIVER, "org.mariadb.jdbc.Driver");
+      //settings.put(AvailableSettings.DRIVER, "org.mariadb.jdbc.Driver");  // don't need this
       settings.put(AvailableSettings.URL, jdbcUrl);
       settings.put(AvailableSettings.USER, user);
       settings.put(AvailableSettings.PASS, password);
@@ -48,15 +48,6 @@ public class EntityManagerFactoryProvider {
       configuration.addAnnotatedClass(com.company.domain.Donor.class);
       configuration.addAnnotatedClass(com.company.domain.Charity.class);
       configuration.addAnnotatedClass(com.company.domain.Donation.class);
-
-      // Set database properties
-      //configuration.setProperty("hibernate.connection.driver_class", "org.h2.Driver");
-      //configuration.setProperty("hibernate.connection.url", "jdbc:h2:mem:testdb");
-      //configuration.setProperty("hibernate.connection.username", "sa");
-      //configuration.setProperty("hibernate.connection.password", "");
-      //configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-      //configuration.setProperty("hibernate.hbm2ddl.auto", "update");
-      //configuration.setProperty("hibernate.show_sql", "true");
 
       // Build SessionFactory
       SessionFactory sessionFactory = configuration.buildSessionFactory();

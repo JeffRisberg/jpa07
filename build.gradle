@@ -25,24 +25,23 @@ ext {
     jacksonDataBindVersion = '2.18.2'
     hibernateVersion = '6.6.8.Final'
     hibernateCommonsAnnotationsVersion = '6.0.6.Final'
+    hikariVersion = '6.2.1'
 }
 
 dependencies {
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("org.slf4j:slf4j-simple:$slf4jVersion")
 
-    implementation("org.apache.commons:commons-collections4:4.2")
+    implementation("org.apache.commons:commons-collections4:4.4")
     implementation("org.projectlombok:lombok:$projectLombokVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonDataBindVersion")
-    implementation("com.fasterxml:classmate:1.4.0")
 
     implementation("org.hibernate:hibernate-core:$hibernateVersion")
     implementation("org.hibernate.common:hibernate-commons-annotations:$hibernateCommonsAnnotationsVersion")
     implementation("org.hibernate:hibernate-hikaricp:$hibernateVersion")
 
-    implementation("com.zaxxer:HikariCP:6.2.1")
+    implementation("com.zaxxer:HikariCP:$hikariVersion")
     implementation("com.mysql:mysql-connector-j:9.2.0")
 
-    testImplementation("junit:junit:4.13.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.0")
 }
