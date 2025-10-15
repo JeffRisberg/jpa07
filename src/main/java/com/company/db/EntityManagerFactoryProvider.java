@@ -40,14 +40,24 @@ public class EntityManagerFactoryProvider {
       settings.put(AvailableSettings.HBM2DDL_AUTO, "update");  // Auto-create tables
       settings.put(AvailableSettings.SHOW_SQL, "true");
 
-      // Hibernate Configuration
+      // Create hibernate configuration
       Configuration configuration = new Configuration();
       configuration.setProperties(settings);
 
-      // Register entity classes manually
-      configuration.addAnnotatedClass(com.company.domain.Donor.class);
+      // Register entity classes automatically
       configuration.addAnnotatedClass(com.company.domain.Charity.class);
       configuration.addAnnotatedClass(com.company.domain.Donation.class);
+      configuration.addAnnotatedClass(com.company.domain.Donor.class);
+
+      // generate a list of days of the week
+      List<String> days = new ArrayList<String>();
+      days.add("Sunday");
+      days.add("Monday");
+      days.add("Tuesday");
+      days.add("Wednesday");
+
+      
+
 
       // Build SessionFactory
       SessionFactory sessionFactory = configuration.buildSessionFactory();
