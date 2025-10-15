@@ -30,6 +30,9 @@ public class Charity extends AbstractItem {
   @Column(name = "description")
   private String description;
 
+  @Column(name = "address")
+  private String address;
+
   @JdbcTypeCode(SqlTypes.JSON)
   @Column(name = "attributes", columnDefinition = "json")
   private Map<String, Object> attributes;
@@ -49,6 +52,7 @@ public class Charity extends AbstractItem {
 
     sb.append("Charity[name=" + name);
     sb.append(", ein=" + ein);
+    sb.append(", address=" + address);
     sb.append(", attributes=" + attributes);
     sb.append("]");
 
